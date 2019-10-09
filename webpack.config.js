@@ -4,8 +4,6 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const HtmlPlugin = require('html-webpack-plugin');
 const isDev = process.env.NODE_ENV === 'development';
 
-
-
 let config = {
   target:'web',//编译目标为web平台
   entry: path.join(__dirname,'src/index.js'),
@@ -19,6 +17,9 @@ let config = {
         test: /\.vue$/,
         loader: 'vue-loader'
       },{
+        test: /\.jsx$/,
+        loader: 'babel-loader'
+      },{
         test: /\.css$/,
         use: [
           'style-loader',
@@ -29,6 +30,12 @@ let config = {
         use:[
           'style-loader',
           'css-loader',
+          {
+            loader:'postcss-loader',
+            options:{
+              sourceMap:true
+            }
+          },
           'stylus-loader'
         ]
       },{
