@@ -1,0 +1,9 @@
+{
+  "extends":["standard"] ,
+  "plugins":["html" , "vue"],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  }
+}

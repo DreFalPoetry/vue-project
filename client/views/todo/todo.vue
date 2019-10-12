@@ -1,62 +1,68 @@
 <template>
   <section class="real-app">
-    <input 
+    <input
       type="text"
       class="add-input"
       autofocus="autofocus"
       placeholder="接下去要做什么？"
       @keyup.enter="addTodo"
     >
-    <Item v-for="todo in filteredTodos" :key="todo.id" :todo="todo" @del="deleteTodo"/>
-    <Tabs 
-      :filter="filter" 
-      :todos="todos" 
+    <Item
+      v-for="todo in filteredTodos"
+      :key="todo.id"
+      :todo="todo"
+      @del="deleteTodo"
+    />
+    <Tabs
+      :filter="filter"
+      :todos="todos"
       @toggle="toggleFilter"
-      @clearAll="clearAllComplete"/>
+      @clearAll="clearAllComplete"
+    />
   </section>
 </template>
 
 <script>
 import Item from './item.vue'
 import Tabs from './tabs.vue'
-let id = 0;
+let id = 0
 export default {
-  data(){
-    return {
-      todos:[],
-      filter:'all'
-    }
-  },
-  components:{
+  components: {
     Item,
     Tabs
   },
-  computed:{
-    filteredTodos(){
-      if(this.filter === 'all'){
-        return this.todos
-      }
-      const completed = this.filter === 'completed' 
-      return this.todos.filter(todo=> completed === todo.completed)
+  data () {
+    return {
+      todos: [],
+      filter: 'all'
     }
   },
-  methods:{
-    addTodo(e){
+  computed: {
+    filteredTodos () {
+      if (this.filter === 'all') {
+        return this.todos
+      }
+      const completed = this.filter === 'completed'
+      return this.todos.filter(todo => completed === todo.completed)
+    }
+  },
+  methods: {
+    addTodo (e) {
       this.todos.unshift({
-        id:id++,
-        content:e.target.value.trim(),
-        completed:false
+        id: id++,
+        content: e.target.value.trim(),
+        completed: false
       })
       e.target.value = ''
     },
-    deleteTodo(id){
+    deleteTodo (id) {
       console.log(id)
-      this.todos.splice(this.todos.findIndex(todo => todo.id === id),1)
+      this.todos.splice(this.todos.findIndex(todo => todo.id === id), 1)
     },
-    toggleFilter(state){
+    toggleFilter (state) {
       this.filter = state
     },
-    clearAllComplete(){
+    clearAllComplete () {
       this.todos = this.todos.filter(todo => !todo.completed)
     }
   }
@@ -74,11 +80,11 @@ export default {
     width 100%
     font-size 24px
     font-family inherit
-    font-weight inherit 
+    font-weight inherit
     line-height 1.4em
     border none
-    outline none 
-    color inherit 
+    outline none
+    color inherit
     box-sizing border-box
     font-smoothing antialiased
     padding 16px 16px 16px 36px
