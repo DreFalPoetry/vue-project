@@ -3,12 +3,23 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 
 module.exports = {
   entry:{
-    app:'./app.js'
+    main:'./src/index.js'
   },
   output:{
     publicPath:__dirname + '/dist/',
     path:path.resolve(__dirname,'dist'),
-    filename:'boundle.js'
+    filename:'[name].boundle.js',
+    chunkFilename:'[name].js'
+  },
+  optimization: {
+    splitChunks: {
+      // chunks: 'all',
+      // cacheGroups: {
+      //   vendors: {
+      //     name: 'vendors'
+      //   }
+      // }
+    }
   },
   module:{
     rules: [
