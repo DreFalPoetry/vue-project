@@ -1,6 +1,7 @@
 {
   "extends":["standard"] ,
   "plugins":["html" , "vue"],
+  "parser":"babel-eslint",
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true

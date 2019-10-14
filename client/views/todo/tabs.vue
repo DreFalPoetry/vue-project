@@ -6,7 +6,7 @@
         v-for="state in states"
         :key="state"
         :class="[state,filter === state ? 'actived' : '']"
-        @click="toggleFilter(state)"
+        @click="toggleFilter(state )"
       >
         {{ state }}
       </span>
@@ -15,7 +15,7 @@
       class="clear"
       @click="clearAllCompleted"
     >Clear Completed</span>
-  </div>
+  </div> 
 </template>
 
 <script>
