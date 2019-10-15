@@ -1,12 +1,3 @@
-import style from  './index.scss';
-import avatar from './avatar.png'
-import createAvatar from './createAvatar'
-
-createAvatar()
-
-var img = new Image()
-img.src = avatar;
-img.classList.add(style.avatar);
-
+import './index.scss';
 var root = document.getElementById('root')
-root.append(img);
+root.innerHTML = '<div class="iconfont icon-loading"></div>'
