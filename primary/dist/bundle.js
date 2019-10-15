@@ -86,25 +86,14 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./src/content.js":
+/***/ "./src/avatar.png":
 /*!************************!*\
-  !*** ./src/content.js ***!
+  !*** ./src/avatar.png ***!
   \************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-eval("function Content(){\r\n  var dom = document.getElementById('root');\r\n  var content = document.createElement('div')\r\n  content.innerText = 'content'\r\n  dom.append(content) \r\n}\r\n\r\nmodule.exports = Content;\r\n\r\n// export default Content\r\n\r\n\n\n//# sourceURL=webpack:///./src/content.js?");
-
-/***/ }),
-
-/***/ "./src/header.js":
-/*!***********************!*\
-  !*** ./src/header.js ***!
-  \***********************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("function Header(){\r\n  var dom = document.getElementById('root');\r\n  var header = document.createElement('div')\r\n  header.innerText = 'header'\r\n  dom.append(header) \r\n}\r\n\r\nmodule.exports = Header;\r\n\r\n// export default Header;\r\n\r\n\n\n//# sourceURL=webpack:///./src/header.js?");
+eval("module.exports = __webpack_require__.p + \"0dc6a0f852a9b69f918188ce7db9e83c.png\";\n\n//# sourceURL=webpack:///./src/avatar.png?");
 
 /***/ }),
 
@@ -112,21 +101,11 @@ eval("function Header(){\r\n  var dom = document.getElementById('root');\r\n  va
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-eval("//es module 模块引入方式\r\n//commonjs 模块引入规范 CMD AMD 规范等\r\n//webpack 模块打包工具 -- 最早是js的模块打包工具 --> 打包任何形式的模块\r\n// import Header from './header';\r\n// import Sidebar from './sidebar';\r\n// import Content from './content';\r\n\r\n//commonJs语法引入\r\nvar Header = __webpack_require__(/*! ./header */ \"./src/header.js\"); //commonJs引入方式\r\nvar Sidebar = __webpack_require__(/*! ./sidebar */ \"./src/sidebar.js\"); //commonJs引入方式\r\nvar Content = __webpack_require__(/*! ./content */ \"./src/content.js\"); //commonJs引入方式\r\n\r\nnew Header()\r\nnew Sidebar()\r\nnew Content()\r\n\r\n\n\n//# sourceURL=webpack:///./src/index.js?");
-
-/***/ }),
-
-/***/ "./src/sidebar.js":
-/*!************************!*\
-  !*** ./src/sidebar.js ***!
-  \************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("function Sidebar(){\r\n  var dom = document.getElementById('root');\r\n  var sidebar = document.createElement('div')\r\n  sidebar.innerText = 'sidebar'\r\n  dom.append(sidebar) \r\n}\r\n\r\nmodule.exports = Sidebar;\r\n\r\n// export default Sidebar;\r\n\n\n//# sourceURL=webpack:///./src/sidebar.js?");
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _avatar_png__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./avatar.png */ \"./src/avatar.png\");\n/* harmony import */ var _avatar_png__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_avatar_png__WEBPACK_IMPORTED_MODULE_0__);\n\r\n\r\nvar img = new Image()\r\nimg.src = _avatar_png__WEBPACK_IMPORTED_MODULE_0___default.a;\r\n\r\nvar root = document.getElementById('root')\r\nroot.append(img);\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ })
 
