@@ -3,4 +3,5 @@ webpack在前段工程化中饰演重要的角色
 
 webpack is a module boundler  【模块打包工具】
 
-loader ==> 识别非js结尾的模块
+loader ==> 识别非js结尾的模块  执行顺序【从上到下，从右到左】
+
