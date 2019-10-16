@@ -4,7 +4,10 @@ const path = require('path');
 
 module.exports = {
   mode:'development',
-  entry: './src/index.js',
+  entry: {
+    main:'./src/index.js',
+    sub:'./src/index.js',
+  },
   module:{
     rules:[{
       test:/\.(jpg|png|gif)$/,
@@ -38,7 +41,8 @@ module.exports = {
     }]
   },
   output: {
-    filename:'bundle.js',
+    publicPath:'http://cnd.com.cn',
+    filename:'[name].js',
     path: path.resolve(__dirname,'dist'),
   },
   plugins: [
