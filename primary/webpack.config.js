@@ -4,9 +4,10 @@ const path = require('path');
 
 module.exports = {
   mode:'development',
+  devtool:'cheap-module-eval-source-map',
+  //线上的 devtool 'cheap-module-source-map'
   entry: {
     main:'./src/index.js',
-    sub:'./src/index.js',
   },
   module:{
     rules:[{
@@ -41,7 +42,6 @@ module.exports = {
     }]
   },
   output: {
-    publicPath:'http://cnd.com.cn',
     filename:'[name].js',
     path: path.resolve(__dirname,'dist'),
   },

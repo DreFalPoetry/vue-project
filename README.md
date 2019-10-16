@@ -11,3 +11,7 @@ CleanWebpackPlugin 插件，每次打包之前删除打包文件
 
 ##### plugin   在webpack运行到某个时刻的时候帮你做一些事情
 
+sourceMap:错误信息的映射
+
+webpackDevServer
+

@@ -1,3 +1,4 @@
-import './index.scss';
-var root = document.getElementById('root')
-root.innerHTML = '<div class="iconfont icon-loading"></div>'
+consele.log('hello world')
+
+//sourceMap：
+//隐射关系 ==》 知道打包后的文件所对应的开发文件的错误位置
