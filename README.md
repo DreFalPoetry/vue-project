@@ -19,3 +19,4 @@ loader ==> 识别非js结尾的模块  执行顺序【从上到下，从右到�
 2. webpack-dev-server 在webpack.config.js 中做配置，启动服务器，监控webpack打包代码更新
 3. server 手写webpack server命令，通过node文件设置监听打包代码变化
 
+##### HMR: Hot Module Replacement

@@ -1,6 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const path = require('path');
+const webpack = require('webpack')
 
 module.exports = {
   mode:'development',
@@ -12,7 +13,9 @@ module.exports = {
   devServer:{
     contentBase:'./dist',
     open:true,
-    port:8888
+    port:8888,
+    hot:true,
+    hotOnly:true
   },
   module:{
     rules:[{
@@ -44,6 +47,13 @@ module.exports = {
         'sass-loader',
         'postcss-loader' 
       ]
+    },{
+      test:/\.css$/,
+      use: [
+        'style-loader',
+        'css-loader',
+        'postcss-loader' 
+      ]
     }]
   },
   output: {
@@ -55,6 +65,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template:'src/index.html'
-    })
+    }),
+    new webpack.HotModuleReplacementPlugin()
   ]
 }
