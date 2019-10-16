@@ -9,6 +9,11 @@ module.exports = {
   entry: {
     main:'./src/index.js',
   },
+  devServer:{
+    contentBase:'./dist',
+    open:true,
+    port:8888
+  },
   module:{
     rules:[{
       test:/\.(jpg|png|gif)$/,
@@ -42,6 +47,7 @@ module.exports = {
     }]
   },
   output: {
+    // publicPath:'/',
     filename:'[name].js',
     path: path.resolve(__dirname,'dist'),
   },
