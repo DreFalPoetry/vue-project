@@ -116,7 +116,35 @@ chunk：打包生成的文件
 
 使用webpackPrefetch进行预加载文件做性能优化
 
-#### 用户浏览器缓存
+#### 用户浏览器缓存 【contenthash】
+
+#### Shimming [垫片]
+
+```js
+plugins: [
+    new webpack.ProvidePlugin({
+      $:'jquery'
+    })
+ ],
+```
+
+使 this 指向window
+
+```js
+{ 
+      test: /\.js$/, 
+      exclude: /node_modules/, 
+      use:[{
+        loader:'babel-loader'
+      },{
+        loader:'imports-loader?this=>window'
+      }]
+}
+```
+
+
+
+
 
 
 
