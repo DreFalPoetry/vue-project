@@ -46,12 +46,7 @@ module.exports = {
       // }
     }]
   },
-  output: {
-    // publicPath:'/',
-    filename:'[name].js',
-    chunkFilename:'[name].chunk.js',
-    path: path.resolve(__dirname,'../dist'),
-  },
+  
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
@@ -59,9 +54,24 @@ module.exports = {
     }),
   ],
   optimization:{
+    runtimeChunk:{
+      name:'runtime'
+    },
     usedExports:true,
     splitChunks: {
       chunks: 'all',
+      cacheGroups: {
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10,
+          name:'vendors'
+        }
+      }
     }
-  }
+  },
+  performance:false,
+  output: {
+    // publicPath:'/',
+    path: path.resolve(__dirname,'../dist'),
+  },
 }
