@@ -57,6 +57,44 @@ optimization:{
 
 创建webpack.dev.js和webpack.product.js分别应对生产环境和开发环境
 
+#### webpack 和 code  splitting
+
+> ##### 在一些场景中，要对代码进行拆分，提高加载速度，提升代码执行性能
+
+同步代码做代码分割，在webpack.config.js中，配置optimization
+
+```js
+optimization:{
+    splitChunks:{
+      chunks:'all'
+    }
+  }
+```
+
+或者是在项目中异步加载的时候：
+
+```js
+function getComponent(){
+  return import('lodash').then(({default:_})=>{
+    var element = document.createElement('div')
+    element.innerHTML = _.join(['Dell','Lee'],'-')
+    return element
+  })
+}
+
+getComponent().then(element=>{
+  document.body.appendChild(element)
+})
+```
+
+
+
+
+
+
+
+
+
 
 
 
