@@ -4,8 +4,8 @@ const path = require('path');
 const webpack = require('webpack')
 
 module.exports = {
-  mode:'development',//模式 -- 开发环境 --生产环境
-  devtool:'cheap-module-eval-source-map',
+  mode:'production',//模式 -- 开发环境 --生产环境
+  devtool:'cheap-module-source-map',
   //线上的 devtool 'cheap-module-source-map'
   entry: {
     main:'./src/index.js',
@@ -89,5 +89,8 @@ module.exports = {
       template:'src/index.html'
     }),
     new webpack.HotModuleReplacementPlugin()
-  ]
+  ],
+  // optimization:{
+  //   usedExports:true
+  // }
 }

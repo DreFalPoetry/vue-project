@@ -37,6 +37,28 @@ loader ==> 识别非js结尾的模块  执行顺序【从上到下，从右到�
 
 #### 使用 babel/preset-react 支持react语法
 
+#### Tree shaking 
+
+代码引入如果没有用到的话不打包-- 在webpack.config.js中的开发环境配置
+
+```js
+optimization:{
+    usedExports:true 
+}
+```
+
+设置package.json文件，添加
+
+```js
+"sideEffects":false,
+```
+
+#### development模式和production模式的区分打包
+
+
+
+
+
 
 
 
