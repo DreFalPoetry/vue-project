@@ -1,11 +1,12 @@
 {
   "name": "primary",
-  "sideEffects":false,
+  "sideEffects": false,
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server"
+    "dev": "webpack-dev-server --config ./build/webpack.dev.js",
+    "build": "webpack --config ./build/webpack.product.js"
   },
   "author": "",
   "license": "ISC",
@@ -29,7 +30,8 @@
     "webpack": "^4.41.1",
     "webpack-cli": "^3.3.9",
     "webpack-dev-middleware": "^3.7.2",
-    "webpack-dev-server": "^3.8.2"
+    "webpack-dev-server": "^3.8.2",
+    "webpack-merge": "^4.2.2"
   },
   "browserslist": [
     "last 2 versions",

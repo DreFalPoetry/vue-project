@@ -55,7 +55,7 @@ optimization:{
 
 #### development模式和production模式的区分打包
 
-
+创建webpack.dev.js和webpack.product.js分别应对生产环境和开发环境
 
 
 

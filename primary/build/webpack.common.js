@@ -1,21 +1,10 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const path = require('path');
-const webpack = require('webpack')
 
 module.exports = {
-  mode:'production',//模式 -- 开发环境 --生产环境
-  devtool:'cheap-module-source-map',
-  //线上的 devtool 'cheap-module-source-map'
   entry: {
     main:'./src/index.js',
-  },
-  devServer:{
-    contentBase:'./dist',
-    open:true,
-    port:8888,
-    hot:true,
-    hotOnly:true
   },
   module:{
     rules:[{
@@ -81,16 +70,15 @@ module.exports = {
   output: {
     // publicPath:'/',
     filename:'[name].js',
-    path: path.resolve(__dirname,'dist'),
+    path: path.resolve(__dirname,'../dist'),
   },
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template:'src/index.html'
     }),
-    new webpack.HotModuleReplacementPlugin()
   ],
-  // optimization:{
-  //   usedExports:true
-  // }
+  optimization:{
+    usedExports:true
+  }
 }
