@@ -110,7 +110,11 @@ document.addEventListener('click',()=>{
 
 chunk：打包生成的文件
 
+#### 打包分析，preloading,prefetching
 
+使用打包分析软件
+
+使用webpackPrefetch进行预加载文件做性能优化
 
 
 

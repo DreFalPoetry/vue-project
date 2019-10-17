@@ -1,13 +1,18 @@
-async function getComponent(){
-  const {default:_} = await import(/*webpackChunkName:"lodash"*/ 'lodash');
-    var element = document.createElement('div')
-    element.innerHTML = _.join(['Dell','Lee'],'-')
-    return element
-}
+// async function getComponent(){
+//   const {default:_} = await import(/*webpackChunkName:"lodash"*/ 'lodash');
+ 
+//     return element
+// }
 
 document.addEventListener('click',()=>{
-  getComponent().then(element=>{
-    document.body.appendChild(element)
+  // var element = document.createElement('div')
+  // element.innerHTML = "Dell Lee"
+  // document.body.appendChild(element)
+  // getComponent().then(element=>{
+  
+  // })
+  import(/* webpackPrefetch: true */  './click').then(({default:func})=>{
+    func()
   })
 })
 
