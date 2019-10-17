@@ -4,7 +4,7 @@ const path = require('path');
 const webpack = require('webpack')
 
 module.exports = {
-  mode:'development',
+  mode:'development',//模式 -- 开发环境 --生产环境
   devtool:'cheap-module-eval-source-map',
   //线上的 devtool 'cheap-module-source-map'
   entry: {

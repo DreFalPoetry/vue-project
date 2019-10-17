@@ -35,7 +35,7 @@ loader ==> 识别非js结尾的模块  执行顺序【从上到下，从右到�
 
 4. 为了不污染全局环境 使用 runtime来配置
 
-
+#### 使用 babel/preset-react 支持react语法
 
 
 
