@@ -22,27 +22,6 @@ module.exports = {
       use:{
         loader:'file-loader',
       }
-    },{
-      test:/\.scss$/,
-      use: [
-        'style-loader',
-        {
-          loader:'css-loader',
-          options:{
-            importLoaders:2,
-            // modules:true
-          }
-        }, 
-        'sass-loader',
-        'postcss-loader' 
-      ]
-    },{
-      test:/\.css$/,
-      use: [
-        'style-loader',
-        'css-loader',
-        'postcss-loader' 
-      ]
     },{ 
       test: /\.js$/, 
       exclude: /node_modules/, 
@@ -70,6 +49,7 @@ module.exports = {
   output: {
     // publicPath:'/',
     filename:'[name].js',
+    chunkFilename:'[name].chunk.js',
     path: path.resolve(__dirname,'../dist'),
   },
   plugins: [
@@ -79,6 +59,7 @@ module.exports = {
     }),
   ],
   optimization:{
+    usedExports:true,
     splitChunks: {
       chunks: 'all',
     }
