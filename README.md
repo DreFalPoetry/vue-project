@@ -71,7 +71,7 @@ optimization:{
   }
 ```
 
-或者是在项目中异步加载的时候：
+或者第二种方式， 无需进行配置，是在项目中异步加载的时候：
 
 ```js
 function getComponent(){
@@ -87,7 +87,7 @@ getComponent().then(element=>{
 })
 ```
 
-
+官网详情：plugins ==> SplitChunksPlugin
 
 
 

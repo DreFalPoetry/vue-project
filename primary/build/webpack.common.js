@@ -79,8 +79,28 @@ module.exports = {
     }),
   ],
   optimization:{
-    splitChunks:{
-      chunks:'all'
+    splitChunks: {
+      chunks: 'all',
+      minSize: 30000,//大于30kb时做代码分割
+      maxSize: 0,
+      minChunks: 1,
+      maxAsyncRequests: 5,
+      maxInitialRequests: 3,
+      automaticNameDelimiter: '~',
+      automaticNameMaxLength: 30,
+      name: true,
+      cacheGroups: {//缓存组
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10,
+          filename:'vendors.js'
+        },
+        default:{
+          priority: -20,
+          reuseExistingChunk: true,
+          filename:'common.js'
+        }
+      }
     }
   }
 }
