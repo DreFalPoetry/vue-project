@@ -89,6 +89,29 @@ getComponent().then(element=>{
 
 官网详情：plugins ==> SplitChunksPlugin
 
+#### Lazy Loading懒加载，Chunk是什么？
+
+懒加载：通过import异步的加载模块，在执行import语法的时候，模块才会被载入，使页面加载的速度更快
+
+```js
+async function getComponent(){
+  const {default:_} = await import(/*webpackChunkName:"lodash"*/ 'lodash');
+    var element = document.createElement('div')
+    element.innerHTML = _.join(['Dell','Lee'],'-')
+    return element
+}
+
+document.addEventListener('click',()=>{
+  getComponent().then(element=>{
+    document.body.appendChild(element)
+  })
+})
+```
+
+chunk：打包生成的文件
+
+
+
 
 
 
