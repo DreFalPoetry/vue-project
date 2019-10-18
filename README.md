@@ -142,7 +142,7 @@ plugins: [
 }
 ```
 
-
+阅读 webpack官网  ==> documentation ==> guides
 
 
 

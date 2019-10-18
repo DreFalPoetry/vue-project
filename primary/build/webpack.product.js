@@ -1,7 +1,5 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const merge = require('webpack-merge');
-const commonConfig = require('./webpack.common');
 
 const prodConfig = {
   mode:'production',//模式 -- 开发环境 --生产环境
@@ -47,4 +45,4 @@ const prodConfig = {
   },
 }
 
-module.exports = merge(commonConfig,prodConfig)
+module.exports = prodConfig
