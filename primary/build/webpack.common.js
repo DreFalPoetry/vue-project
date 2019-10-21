@@ -1,7 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const path = require('path');
-const webpack = require('webpack');
 const merge = require('webpack-merge');
 const devConfig = require('./webpack.dev')
 const prodConfig = require('./webpack.product')
@@ -31,8 +30,6 @@ const commonConfig = {
       exclude: /node_modules/, 
       use:[{
         loader:'babel-loader'
-      },{
-        loader:'imports-loader?this=>window'
       }]
       // options:{
         // presets:[ ["@babel/preset-env",{
@@ -60,9 +57,6 @@ const commonConfig = {
     new HtmlWebpackPlugin({
       template:'src/index.html'
     }),
-    new webpack.ProvidePlugin({
-      $:'jquery'
-    })
   ],
   optimization:{
     runtimeChunk:{
