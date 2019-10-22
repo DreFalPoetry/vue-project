@@ -148,6 +148,8 @@ plugins: [
 
 #### PWA[ [Progressive Web Apps](https://developers.google.com/web/progressive-web-apps) ]
 
+#### TypeScript的打包配置
+
 
 
 
