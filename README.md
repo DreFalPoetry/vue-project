@@ -158,6 +158,27 @@ plugins: [
 
 #### EsLint在webpack中的配置
 
+#### webpack性能优化
+
+1. 技术迭代（node,npm,yarn这些版本尽可能的新）
+
+2. 在尽可能少的loader上引用迭代，缩小loader的作用范围
+
+3. plugin确保精确可靠，尽可能少的使用
+
+4. resolve参数合理配置
+
+   ```js
+   resolve:{
+     extensions:['.js','.jsx'],
+     alias:{
+       delllee:path.resolve(__dirname,'../src/....')
+     }
+   },
+   ```
+
+
+
 
 
 
