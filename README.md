@@ -152,7 +152,9 @@ plugins: [
 
 #### 使用webpackDevServer实现请求转发
 
+#### 使用webpackDevServer解决单页路由问题
 
+​	使用 historyApiFallback 做路由页面请求
 
 
 
