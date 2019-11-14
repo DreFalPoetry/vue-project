@@ -68,7 +68,7 @@ if (isDev) {
     devServer,
     plugins: defaultPluins.concat([
       new webpack.HotModuleReplacementPlugin(),
-      new webpack.NoEmitOnErrorsPlugin()
+      // new webpack.NoEmitOnErrorsPlugin()
     ])
   })
 } else {
@@ -100,6 +100,12 @@ if (isDev) {
           ]
         }
       ]
+    },
+    optimization:{
+      splitChunks:{
+        chunks:'all'
+      },
+      runtimeChunk:true
     },
     plugins: defaultPluins.concat([
       new ExtractPlugin('styles.[contentHash:8].css'),
