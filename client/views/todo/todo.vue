@@ -56,7 +56,6 @@ export default {
       e.target.value = ''
     },
     deleteTodo (id) {
-      console.log(id)
       this.todos.splice(this.todos.findIndex(todo => todo.id === id), 1)
     },
     toggleFilter (state) {
