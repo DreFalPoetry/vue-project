@@ -4,14 +4,14 @@
       type="text"
       class="add-input"
       autofocus="autofocus"
-        placeholder="接下去要做什么？"
+      placeholder="接下去要做什么？"
       @keyup.enter="addTodo"
     >
     <Item
       v-for="todo in filteredTodos"
-        :key="todo.id"
-        :todo="todo"
-        @del="deleteTodo"
+      :key="todo.id"
+      :todo="todo"
+      @del="deleteTodo"
     />
     <Tabs
       :filter="filter"
