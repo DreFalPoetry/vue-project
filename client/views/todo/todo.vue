@@ -10,7 +10,7 @@
     <Item
       v-for="todo in filteredTodos"
         :key="todo.id"
-      :todo="todo"
+        :todo="todo"
       @del="deleteTodo"
     />
     <Tabs
