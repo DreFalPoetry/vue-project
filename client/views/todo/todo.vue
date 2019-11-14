@@ -9,7 +9,7 @@
     >
     <Item
       v-for="todo in filteredTodos"
-      :key="todo.id"
+        :key="todo.id"
       :todo="todo"
       @del="deleteTodo"
     />
