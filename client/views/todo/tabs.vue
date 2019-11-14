@@ -15,7 +15,7 @@
       class="clear"
       @click="clearAllCompleted"
     >Clear Completed</span>
-  </div> 
+  </div>
 </template>
 
 <script>
