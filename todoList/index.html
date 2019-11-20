@@ -12,10 +12,26 @@
     <input type="text" v-model="inputValue">
     <button v-on:click="handleBtnClick">提交</button>
     <ul>
-      <li v-for="item in list">{{item}}</li>
+      <todo-item 
+        v-bind:content="item" 
+        v-for="item in list"
+      />
+      <!-- <li v-for="item in list">{{item}}</li> -->
     </ul>
   </div>
   <script>
+    var TodoItem = {
+      props:['content'],
+      template:"<li>{{content}}</li>"
+    }
+
+    // //创建vue 全局组件
+    // Vue.component("TodoItem",{
+    //   props:['content'],
+    //   template:"<li>{{content}}</li>"
+    // })
+
+
     /** 
      * 1.v-for 循环指令
      * 2.v-on: 
@@ -24,6 +40,9 @@
     */
     var app = new Vue({
       el:'#app',
+      components:{//局部组件引入使用
+        TodoItem:TodoItem
+      },
       data:{
         list:[],
         inputValue:''
