@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../common/vue.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="root">
+    <div @click="handleClick">{{message}}</div>
+    <item/>
+  </div>
+  <script>
+    Vue.component('item',{
+      template:'<div>Hello item</div>'
+    })
+    var vm = new Vue({
+      el:'#root',//让vue实例接管#root中的所有显示
+      data:{
+        message:'hello world'
+      },
+      methods:{
+        handleClick:function(){
+          console.log('hello')
+        }
+      }
+    })
+  </script>
+</body>
+</html>
