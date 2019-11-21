@@ -13,8 +13,9 @@
     <button v-on:click="handleBtnClick">提交</button>
     <ul>
       <todo-item 
-        v-bind:content="item" 
+        :content="item" 
         v-for="item in list"
+        @delete="handleItemDelete"
       />
       <!-- <li v-for="item in list">{{item}}</li> -->
     </ul>
@@ -22,7 +23,12 @@
   <script>
     var TodoItem = {
       props:['content'],
-      template:"<li>{{content}}</li>"
+      template:"<li @click='handleItemClick'>{{content}}</li>",
+      methods:{
+        handleItemClick:function(){
+          this.$emit('delete')
+        }
+      }
     }
 
     // //创建vue 全局组件
@@ -51,6 +57,9 @@
         handleBtnClick:function(){
           this.list.push(this.inputValue)
           this.inputValue = ''
+        },
+        handleItemDelete:function(){
+          console.log('delete')
         }
       }
     })
