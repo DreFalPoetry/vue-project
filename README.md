@@ -14,5 +14,38 @@ Model  View ViewModel
 
 ## vue生命周期函数
 
+Vue实例章节
+
 生命周期函数就是vue实例在某个时间点会自动执行的函数
+
+```js
+	  beforeCreate(){
+        console.log('beforeCreate')
+      },
+      created(){
+        console.log('created')
+      },
+      beforeMount(){
+        console.log(this.$el)
+        console.log('beforeMount')
+      },
+      mounted(){
+        console.log(this.$el)
+        console.log('mounted')
+      },
+      beforeDestroy(){
+        console.log('beforeDestory')
+      },
+      destroyed(){
+        console.log('destoryed')
+      },
+      beforeUpdate(){
+        console.log('beforeupdate')
+      },
+      updated(){
+        console.log('updated')
+      }
+```
+
+
 

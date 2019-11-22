@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var url = "http://baidu.com?ad={1111|2222|3333|4444}&src=aaaaa&ad2={aaa|ccc}&ad3={000|111|3333}",
+    r = new RegExp(/{([^&]+\|[^&]+)}/g);
+    function exploseLink(link) {
+      var links = [link], matches = link.match(r);
+      if (matches.length > 0) {
+        for (var i = 0; i < matches.length; i++) {
+          var values = matches[i].substr(1, matches[i].length-2).split("|"), roundLinks = [];
+          for (var j = 0; j < values.length; j++) {
+            for (var k = 0; k < links.length; k ++) {
+              roundLinks.push(links[k].replace(matches[i], values[j]))
+            }
+          }
+          links = roundLinks;
+        }
+      }
+      return links
+    }
+
+    var links = exploseLink(url)
+    console.log(links)  
+  </script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let url = "http://baidu.com?ad={1111|2222|3333|4444}&src=aaaaa&ad2={aaa|ccc}&ad3={000|wwwww}&ad3={ssss}";
+      var queryObj={};
+      reg=/[?&]([^=&#]+)=([^&#]*)/g;
+      var querys=url.match(reg);
+      console.log(querys);
+      
+      const itemArr = []
+      querys.map((item)=>{
+        let matchedRes;
+        if(/\{([\w\W]+)\}/.test(item) && RegExp.$1.split('|').length >1){
+            matchedRes = RegExp.$1.split('|').map((v)=> item.split('=')[0] + '=' + v ) 
+        }else{
+          matchedRes = [item]
+        }
+        itemArr.push(matchedRes)
+      })
+      console.log(itemArr)
+      
+      var hostMatch = url.match(/(http|https):\/\/(www.)?(\w+(\.)?)+/)
+      var  results = [];
+      var  result = [];
+      loop(itemArr, 0);
+      function loop(arr, deep){
+        for (var i = 0; i < arr[deep].length; i++) {
+          result[deep] = arr[deep][i]
+          if ( deep != arr.length - 1) {
+            loop(arr, deep + 1)
+          } else {
+            results.push(hostMatch[0] + result.join(''))
+          }
+        }
+      }
+      console.log(results)
+
+    function handleCombine(arr) {
+      debugger
+      var len = arr.length;
+      if (len >= 2) {
+        //从前两个开始组合
+        var len1 = arr[0].length;
+        var len2 = arr[1].length;
+        var lenBoth = len1 * len2;
+        var items = new Array(lenBoth);
+        var index = 0;
+        //for循环构建两两组合后的数组
+        for (var i = 0; i < len1; i++) {
+          for (var j = 0; j < len2; j++) {
+            if (arr[0][i] instanceof Array) {
+              items[index] = arr[0][i].concat(arr[1][j]);
+            } else {
+              items[index] = [arr[0][i]].concat(arr[1][j]);
+            }
+            index++;
+          }
+        }
+        // 新组合的数组取代原来前两个数组
+        var newArr = new Array(len - 1);
+        for (var i = 2; i < arr.length; i++) {
+          newArr[i - 1] = arr[i];
+        }
+        newArr[0] = items;
+        // 再次组合前两个
+        return handleCombine(newArr);
+      } else {
+        return arr[0];
+      }
+    }
+    let bb = handleCombine(itemArr)
+    console.log(bb)
+  </script>
+</body>
+</html>
