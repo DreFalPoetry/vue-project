@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>vue中的列表渲染</title>
+  <script src="../common/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <template v-for="(item,index) of list">
+        <div :key="item.id">{{item.text}} - {{index}}</div>
+        <span :key="item.id + 'span'">{{item.text}}</span>
+    </template>
+    <div v-for="(item,key,index) of userInfo">{{item}} --- {{key}} --- {{index}}</div>
+  </div>
+  <script>
+    /**
+     * 通过vue中的数方法操作数组才能改变页面
+     * push pop shift unshift splice sort reverse
+     * 或者改变引用
+     * 修改对象时也是改变引用
+    */
+    var vm = new Vue({
+      el:'#app',
+      data:{
+        list:[
+          {id:'1',text:'hello'},
+          {id:'2',text:'dell'},
+          {id:'3',text:'nice'},
+          {id:'4',text:'to'},
+          {id:'5',text:'meet'},
+          {id:'6',text:'you'},
+        ],
+        userInfo:{
+          name:'Dell',
+          age:'25',
+          gender:'male',
+          salary:'secret'
+        }
+      }
+    })
+  </script>
+</body>
+</html>
