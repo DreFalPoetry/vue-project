@@ -57,3 +57,10 @@ Vue实例章节
 
 【methods 方法】
 
+【watch 监听器】
+
+
+
+## 样式绑定
+
+ :class="{activated: isActivated}"   class的对象绑定

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>vue中样式绑定</title>
+  <style>
+    .activated{
+      color: bisque;
+    }
+  </style>
+  <script src="../common/vue.js"></script>
+</head>
+<body>
+  <div id="root">
+    <!-- :class="{activated:isActivated}" -->
+    <div 
+      @click="handleDivClick"
+      :class="[activated,activated1]"
+    >
+      Hello world
+    </div>
+  </div>
+  <script>
+    var vm = new Vue({
+      el:'#root',
+      data:{
+        // isActivated:false
+        activated:'',
+        activated1:'activated-one'
+      },
+      methods:{
+        handleDivClick:function(){
+          this.activated = this.activated === "activated" ? '' : 'activated'
+        }
+      }
+    })
+  </script>
+</body>
+</html>
