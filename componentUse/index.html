@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>组件使用中的细节点</title>
+  <script src="../common/vue.js"></script>
+</head>
+<body>
+  <div id="root">
+    <!-- <table>
+      <tbody>
+        <tr is="row">
+        </tr>
+        <tr is="row">
+        </tr>
+        <tr is="row">
+        </tr>
+      </tbody>
+    </table> -->
+    <!-- <table>
+      <tbody>
+        <tr is="row"></tr>
+        <tr is="row"></tr>
+        <tr is="row"></tr>
+      </tbody>
+    </table> -->
+    <!-- <div 
+      ref="hello" 
+      @click="handleClick"
+    >
+      hello world
+    </div> -->
+    <counter ref="one" @change="handleChange"></counter>
+    <counter ref="two" @change="handleChange"></counter>
+    <div>{{total}}</div>
+  </div>
+  <script>
+    //非根组件定义data 必须为函数
+    // Vue.component('row',{
+    //   data:function(){
+    //     return {
+    //       content:'this is a row'
+    //     }
+    //   },
+    //   template:`
+    //     <tr>
+    //       <td>{{content}}</td>
+    //     </tr>
+    //   `
+    // })
+
+      Vue.component('counter',{
+        data:function(){
+          return {
+            number:0
+          }
+        },
+        template:'<div @click="handleClick">{{number}}</div>',
+        methods:{
+          handleClick:function(){
+            this.number ++ ;
+            this.$emit('change')
+          }
+        }
+      })
+
+    var vm = new Vue({
+      el:'#root',
+      data:{
+        total:0
+      },
+      methods:{
+        // handleClick:function(){
+        //   console.log('click')
+        //   console.log(this.$refs.hello.innerHTML)  
+        // }
+        handleChange:function(){
+          this.total = this.$refs.one.number + this.$refs.two.number
+          // console.log('change')
+          // console.log(this.$refs.one.number)
+          // console.log(this.$refs.two.number)
+        }
+      }
+    })
+  </script>
+</body>
+</html>

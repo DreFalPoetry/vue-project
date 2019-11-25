@@ -64,3 +64,4 @@ Vue实例章节
 ## 样式绑定
 
  :class="{activated: isActivated}"   class的对象绑定
+
