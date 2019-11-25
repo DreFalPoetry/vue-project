@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>instance exercise</title>
+  <script src="../common/vue.js"></script>
+</head>
+<body>
+  <div id="root">
+    <!-- <p>{{foo}}</p>
+    <button v-on:click="foo = 'baz'">change it</button> -->
+  </div>
+  <script>
+    var data = {a:1};
+    // var obj = {
+    //   foo:'bar'
+    // }
+    // Object.freeze(obj);
+    var vm = new Vue({
+      el:'#root',
+      data:data,
+    })
+
+    vm.$watch('a',function(newVal,oldVal){
+      //这个回调将在 vm.a 改变后调用
+      console.log(newVal,oldVal)
+    })
+  </script>
+</body>
+</html>
