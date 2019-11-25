@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>模板语法</title>
+  <script src="../common/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <div>{{name + ' fddd'}}</div>
+    <div v-text="name + ' wwww'"></div>
+    <div v-html="name + ' fff'"></div>
+    <!-- {{name}} -->
+  </div>
+  <script>
+    var vm = new Vue({
+      el:'#app',
+      data:{
+        name:'ran'
+      }
+    })
+  </script>
+</body>
+</html>
