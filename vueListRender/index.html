@@ -13,14 +13,16 @@
         <div :key="item.id">{{item.text}} - {{index}}</div>
         <span :key="item.id + 'span'">{{item.text}}</span>
     </template>
-    <div v-for="(item,key,index) of userInfo">{{item}} --- {{key}} --- {{index}}</div>
+    <div v-for="(item,index) of array1">{{item}} --- {{index}}</div>
   </div>
   <script>
     /**
-     * 通过vue中的数方法操作数组才能改变页面
+     * 1. 通过vue中的数组变异方法操作数组才能改变页面
      * push pop shift unshift splice sort reverse
-     * 或者改变引用
+     * 2. 或者改变引用
      * 修改对象时也是改变引用
+     * 3.或者使用set方法 Vue.set(vm.userInfo,"address","beijing")
+     * Vue.set(vm.array1,1,5)
     */
     var vm = new Vue({
       el:'#app',
@@ -33,6 +35,7 @@
           {id:'5',text:'meet'},
           {id:'6',text:'you'},
         ],
+        array1:[1,2,3,4],//
         userInfo:{
           name:'Dell',
           age:'25',
