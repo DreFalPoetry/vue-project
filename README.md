@@ -65,3 +65,11 @@ Vue实例章节
 
  :class="{activated: isActivated}"   class的对象绑定
 
+
+
+## 组件参数校验与非props特性
+
+props特性不会显示到dom中
+
+非props特性会显示在html元素的属性中
+
