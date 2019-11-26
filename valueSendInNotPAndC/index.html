@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>非父子组件间的传值(bus/总线/发布订阅模式/观察者模式)</title>
+  <script src="../common/vue.js"></script>
+</head>
+<body>
+  <div id="root">
+    <child content="dell"></child>
+    <child content="lee"></child>
+  </div>
+  <script>
+    //使用bus总线的形式
+    Vue.prototype.bus = new Vue()
+
+    Vue.component('child',{
+      props:{
+        content:String
+      },
+      data:function(){
+        return {
+          selfContent:this.content
+        }
+      },
+      template:'<div @click="handleClick">{{selfContent}}</div>',
+      methods:{
+        handleClick:function(){
+          this.bus.$emit('change',this.selfContent)
+        }
+      },
+      mounted:function(){
+        var _this = this
+        this.bus.$on('change',function(msg){
+          _this.selfContent = msg
+        })
+      }
+    })
+
+    var vm = new Vue({
+      el:'#root'
+    })
+  </script>
+</body>
+</html>
