@@ -77,3 +77,19 @@ props特性不会显示到dom中
 
 ## Vue动画效果
 
+
+
+## vue init webpack [project-name]
+
+
+
+
+
+
+
+
+
+
+
+
+
