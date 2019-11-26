@@ -73,3 +73,7 @@ props特性不会显示到dom中
 
 非props特性会显示在html元素的属性中
 
+
+
+## Vue动画效果
+
