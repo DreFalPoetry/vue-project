@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>vue中的css动画封装</title>
+  <script src="../common/vue.js"></script>
+</head>
+<body>
+  <div id="root">
+    <fade :show="show">
+      <div>Hello world</div>
+    </fade>
+    <fade :show="show">
+      <h1>Hello world</h1>
+    </fade>
+    <button @click="handleClick">change</button>
+  </div>
+  <script>
+    Vue.component('fade',{
+      props:['show'],
+      template:`
+        <transition @before-enter="handleBeforeEnter" @enter="handleEnter">
+          <slot v-if="show"></slot>  
+        </transition>
+      `,
+      methods:{
+        handleBeforeEnter:function(el){
+          el.style.color = "red"
+        },
+        handleEnter:function(el,done){
+          setTimeout(() => {
+            el.style.color="green"
+            done()
+          }, 2000);
+        
+        }
+      }
+    })
+    //通过某一时刻在html标签上添加css类实现动画效果
+    var vm = new Vue({
+      el:'#root',
+      data:{
+        show:true
+      },
+      methods:{
+        handleClick:function(){
+          this.show = !this.show
+        }
+      }
+    })
+  </script>
+</body>
+</html>
