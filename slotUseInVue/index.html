@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>vue中的插槽（slot）</title>
+  <script src="../common/vue.js"></script>
+</head>
+<body>
+  <div id="root">
+      <child>
+        <div class="header" slot="header" >header</div>
+        <div class="footer" slot="footer">footer</div>
+      </child>
+  </div>
+  <script>
+    //具名插槽
+    Vue.component('child',{
+      template:`
+                <div>
+                  <slot name="header"></slot>
+                  <p>hello</p>
+                  <slot name="footer"></slot>
+                </div>
+              `
+    })
+
+    var vm = new Vue({
+      el:'#root',
+    })
+  </script>
+</body>
+</html>
