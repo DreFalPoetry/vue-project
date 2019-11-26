@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>给组件绑定原生事件</title>
+  <script src="../common/vue.js"></script>
+</head>
+<body>
+  <div id="root">
+    <Child @click.native="handleClick"></Child>
+  </div>
+  <script>
+    //在事件绑定的后边加一个native的修饰符
+    Vue.component('child',{
+      template:'<div >child</div>', //@click="handleChildClick"
+      // methods:{
+      //   handleChildClick:function(){
+      //     this.$emit('click')
+      //   }
+      // }
+    })
+    var vm = new Vue({
+      el:'#root',
+      methods:{
+        handleClick:function(){
+          console.log('click')
+        }
+      }
+    })
+  </script>
+</body>
+</html>
