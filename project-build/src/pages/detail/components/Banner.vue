@@ -1,16 +1,16 @@
 <template>
   <div>
     <div class="banner" @click="handleBannerClick">
-      <img class="banner-img" src="https://dimg04.c-ctrip.com/images/350u1a0000019by6z96FA_C_640_360_Q60.jpg" alt="">
+      <img class="banner-img" :src="bannerImg" alt="">
       <div class="banner-info">
-        <div class="banner-title">dalian</div>
+        <div class="banner-title">{{sightName}}</div>
         <div class="banner-number">
           <span class="iconfont banner-icon">&#xe643;</span>
           39
         </div>
       </div>
     </div>
-    <common-gallary :imgs="imgs" v-show="showGallary" @close="handleGallaryClose"></common-gallary>
+    <common-gallary :imgs="bannerImgs" v-show="showGallary" @close="handleGallaryClose"></common-gallary>
   </div>
 </template>
 
@@ -18,10 +18,14 @@
 import CommonGallary from 'common/gallary/Gallary'
 export default {
   name: 'DetailBanner',
+  props: {
+    sightName: String,
+    bannerImg: String,
+    bannerImgs: Array
+  },
   data () {
     return {
-      showGallary: false,
-      imgs: ["http://img1.qunarzz.com/sight/p0/1811/50/50949f30feac23d3a3.water.jpg_r_800x800_5af83d08.jpg", "http://img1.qunarzz.com/sight/p0/1811/af/af05278e3b5c9908a3.water.jpg_r_800x800_ace65ca5.jpg"]
+      showGallary: false
     }
   },
   methods: {

@@ -33,7 +33,7 @@ export default {
           opacity: opacity
         }
         this.showAbs = false
-      }else{
+      } else {
         this.showAbs = true
       }
     }
