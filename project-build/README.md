@@ -47,6 +47,9 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 缺点：首屏时间稍慢 seo差
 
 
+## Vue Router
+
+## Vuex
 
 
 
