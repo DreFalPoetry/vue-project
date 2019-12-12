@@ -23,30 +23,21 @@
           if(crI.nodeType != 1){//1为元素节点 2为属性节点
             continue ;
           }
-          let temp = crI.parentNode;
-          if(type === 0){
-            if(crI.nodeType == 1){
+          if(type === 1){
+            let crIP = crI.parentNode;
+            if(crIP.nodeType == 1){
+              if(crIP == obj){
+                objCld[objCld.length] = crI ;
+              }
+            }else if(crIP.parentNode == obj){//父级为属性节点 他父级为传过来的obj的话
               objCld[objCld.length] = crI ;
             }
-          }else{
-            if(temp.nodeType == 1){
-                if(temp == obj){
-                  objCld[objCld.length] = crI ;
-                }
-            }else if(temp.parentNode == obj){//父级为属性节点 他父级为传过来的obj的话
-              objCld[objCld.length] = crI ;
-            }
+          }else if(crI.nodeType == 1){
+            objCld[objCld.length] = crI ;
           }
         }
         return objCld;
       }
-      CUSSTA.getCElTest = function(obj){
-        return obj.getElementsByTagName('*');
-      }
-      CUSSTA.cFlt = function(v){
-        return v.tagName!=='SCRIPT' && v.tagName!=='NOSCRIPT'
-      }
-
       //body里边在此之前已经渲染的下级元素
       CUSSTA.bC = CUSSTA.getCEl(document.body,1)
       //wrapper中的所有元素
@@ -101,11 +92,9 @@
                 console.log("clicked iframe");
                 window.focus() 
               } 
-            }else{
-              if (curTgt === lpEle) {
-                console.log("clicked ele"); 
-                curTgt = null
-              }
+            }else if(curTgt === lpEle){
+              console.log("clicked ele"); 
+              curTgt = null
             }
           }
         },200)
