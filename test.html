@@ -10,47 +10,19 @@
   <h1>1111</h1>
   <h1>2222</h1>
   <h1>3333</h1>
+  <script>
+    const IgSc = 'aaaaa'
+  </script>
   <!-- 自定义html -->
   <span id="cusStaW" style="display: inline-block;overflow: hidden;">
     <script>
       var CUSSTA = CUSSTA || {};
       CUSSTA.el =  document.getElementById('cusStaW')
-      CUSSTA.getCEl = function(obj,type){//type [0--获取所有, 1--获取下一级]
-        let objCld = [] ;
-        let objs = obj.getElementsByTagName('*');
-        for(let i=0; i<objs.length; i++){
-          let crI = objs[i]
-          if(crI.nodeType != 1){//1为元素节点 2为属性节点
-            continue ;
-          }
-          if(type === 1){
-            let crIP = crI.parentNode;
-            if(crIP.nodeType == 1){
-              if(crIP == obj){
-                objCld[objCld.length] = crI ;
-              }
-            }else if(crIP.parentNode == obj){//父级为属性节点 他父级为传过来的obj的话
-              objCld[objCld.length] = crI ;
-            }
-          }else if(crI.nodeType == 1){
-            objCld[objCld.length] = crI ;
-          }
-        }
-        return objCld;
+      CUSSTA.getCEl = function(obj,type){
+        let objCld = [].slice.call(obj.getElementsByTagName('*'))
+        return type == 0 ? objCld : objCld.filter(function(v){return v.parentNode == obj})
       }
-      //body里边在此之前已经渲染的下级元素
       CUSSTA.bC = CUSSTA.getCEl(document.body,1)
-      //wrapper中的所有元素
-      CUSSTA.wEs = CUSSTA.getCEl(CUSSTA.el,0)
-
-      // custom
-      let a1 =  document.createElement('a')
-      a1.innerHTML = "<img src='https://bs.serving-sys.com/BurstingPipe/adServer.bs?cn=bsr&FlightID=29294475&Page=&PluID=0&Pos=1465774260'/>"
-      a1.id = "a1"
-      let a2 = document.createElement('h1')
-      a2.innerHTML = '<div style="color:green;"><div>1111</div><span>2222</span></div>'
-      document.body.append(a1)
-      document.body.append(a2)
     </script>
     xxxxxx
     <h2>i an in wrapper</h2>
@@ -65,35 +37,29 @@
   <script>
     let curTgt 
     let wEls = CUSSTA.getCEl(CUSSTA.el,0).filter(function (v) {
-      return CUSSTA.wEs.indexOf(v) < 0 && v.tagName!=='SCRIPT' && v.tagName!=='NOSCRIPT';
-    }).concat([CUSSTA.el])
-
-    let bApdEls = CUSSTA.getCEl(document.body,1).filter(function (v) {
-      return CUSSTA.bC.indexOf(v) < 0 && v.tagName!=='SCRIPT' && v.tagName!=='NOSCRIPT';
+      return v.tagName!='SCRIPT' && v.tagName!='NOSCRIPT';
     })
-
-    let aClkEls = bApdEls.map(function(v){
-      return CUSSTA.getCEl(v,0) 
-    }).reduce(function(a,b){
-      return a.concat(b)
-    },bApdEls).concat(wEls)
-
+    wEls.push(CUSSTA.el)
+    CUSSTA.getCEl(document.body,1).map(function (v) {
+      if(CUSSTA.bC.indexOf(v) < 0 && v.tagName!='SCRIPT' && v.tagName!='NOSCRIPT'){
+        wEls.push(v)
+        wEls = wEls.concat(CUSSTA.getCEl(v,0))
+      }
+    })
     window.onload = function(){
       document.onclick = function (e) {
         curTgt = e.target;
       }
-
-      if(aClkEls.length){
+      if(wEls.length){
         setInterval(function(){
-          for (let i=0;i<aClkEls.length;i++) {
-            let lpEle = aClkEls[i]
-            if(lpEle.tagName ==='IFRAME'){
-              if(document.activeElement === lpEle){
-                console.log("clicked iframe");
-                window.focus() 
-              } 
-            }else if(curTgt === lpEle){
-              console.log("clicked ele"); 
+          for (let i=0;i<wEls.length;i++) {
+            let lpEle = wEls[i]
+            if(document.activeElement == lpEle || curTgt == lpEle){
+              let fc = document.createElement("img");
+              fc.src = IgSc;
+              fc.style.cssText = 'width:0;height:0;';
+              CUSSTA.el.append(fc)
+              window.focus()
               curTgt = null
             }
           }
