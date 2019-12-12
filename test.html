@@ -11,43 +11,60 @@
   <h1>2222</h1>
   <h1>3333</h1>
   <!-- 自定义html -->
-  <span id="myWrapper">
+  <span id="cusStaW" style="display: inline-block;overflow: hidden;">
     <script>
-      var MYAPP = MYAPP || {};
-      MYAPP.el =  document.getElementById('myWrapper')
-      MYAPP.getCEl = function(obj){
-        var objChild = [] ;
-        var objs = obj.getElementsByTagName('*');
-        for(let i=0,j=objs.length; i<j;++i){
-          if(objs[i].nodeType != 1){
+      var CUSSTA = CUSSTA || {};
+      CUSSTA.el =  document.getElementById('cusStaW')
+      CUSSTA.getCEl = function(obj,type){//type [0--获取所有, 1--获取下一级]
+        let objCld = [] ;
+        let objs = obj.getElementsByTagName('*');
+        for(let i=0; i<objs.length; i++){
+          let crI = objs[i]
+          if(crI.nodeType != 1){//1为元素节点 2为属性节点
             continue ;
           }
-          var temp = objs[i].parentNode;
-          if(temp.nodeType == 1){
-            if(temp == obj){
-              objChild[objChild.length] = objs[i] ;
+          let temp = crI.parentNode;
+          if(type === 0){
+            if(crI.nodeType == 1){
+              objCld[objCld.length] = crI ;
             }
-          }else if(temp.parentNode == obj){
-            objChild[objChild.length] = objs[i] ;
+          }else{
+            if(temp.nodeType == 1){
+                if(temp == obj){
+                  objCld[objCld.length] = crI ;
+                }
+            }else if(temp.parentNode == obj){//父级为属性节点 他父级为传过来的obj的话
+              objCld[objCld.length] = crI ;
+            }
           }
         }
-        return objChild;
+        return objCld;
       }
-      MYAPP.cFlt = function(v){
+      CUSSTA.getCElTest = function(obj){
+        return obj.getElementsByTagName('*');
+      }
+      CUSSTA.cFlt = function(v){
         return v.tagName!=='SCRIPT' && v.tagName!=='NOSCRIPT'
       }
-      MYAPP.iC = MYAPP.getCEl(MYAPP.el).filter(MYAPP.cFlt), //tag1
-      MYAPP.bC = MYAPP.getCEl(document.body)
-      let a1 =  document.createElement('img')
-      a1.src = 'https://bs.serving-sys.com/BurstingPipe/adServer.bs?cn=bsr&FlightID=29294475&Page=&PluID=0&Pos=1465774260' 
+
+      //body里边在此之前已经渲染的下级元素
+      CUSSTA.bC = CUSSTA.getCEl(document.body,1)
+      //wrapper中的所有元素
+      CUSSTA.wEs = CUSSTA.getCEl(CUSSTA.el,0)
+
+      // custom
+      let a1 =  document.createElement('a')
+      a1.innerHTML = "<img src='https://bs.serving-sys.com/BurstingPipe/adServer.bs?cn=bsr&FlightID=29294475&Page=&PluID=0&Pos=1465774260'/>"
       a1.id = "a1"
       let a2 = document.createElement('h1')
-      a2.innerHTML = 'yyyyyy'
+      a2.innerHTML = '<div style="color:green;"><div>1111</div><span>2222</span></div>'
       document.body.append(a1)
-      setTimeout(() => {
-        document.body.append(a2)
-      }, 8000);
+      document.body.append(a2)
     </script>
+    xxxxxx
+    <h2>i an in wrapper</h2>
+    <img style="width:100px;height:100px;display: inline-block;" src="https://file.ituring.com.cn/SmallCover/1911299bfad96c1e2ccf" id="a22" alt="">
+    <iframe src="./iframe.html" frameborder="1"></iframe>
     <script src="https://bs.serving-sys.com/BurstingPipe/adServer.bs?cn=rsb&c=28&pli=29294475&PluID=0&w=600&h=314&ord=[timestamp]"></script>
     <noscript>
       < a href=" " target="_blank">< img src="https://bs.serving-sys.com/BurstingPipe/adServer.bs?cn=bsr&FlightID=29294475&Page=&PluID=0&Pos=1465774260" border=0 width=600 height=314></ a>
@@ -55,55 +72,50 @@
   </span>
   <!-- 自定义js -->
   <script>
-    let ti_0
-    let tr_1
     let curTgt 
+    let wEls = CUSSTA.getCEl(CUSSTA.el,0).filter(function (v) {
+      return CUSSTA.wEs.indexOf(v) < 0 && v.tagName!=='SCRIPT' && v.tagName!=='NOSCRIPT';
+    }).concat([CUSSTA.el])
 
-    let apdEles = MYAPP.getCEl(document.body).filter(function (v) {
-      return MYAPP.bC.indexOf(v) < 0 && v.tagName!=='SCRIPT' && v.tagName!=='NOSCRIPT';
+    let bApdEls = CUSSTA.getCEl(document.body,1).filter(function (v) {
+      return CUSSTA.bC.indexOf(v) < 0 && v.tagName!=='SCRIPT' && v.tagName!=='NOSCRIPT';
     })
 
-    function ifsFcs(mIfs) { 
-      for (let i=0;i<mIfs.length;i++) {
-        if (document.activeElement === mIfs[i] ) {
-          console.log("clicked "+ mIfs[i].id); 
-          window.focus(); 
-        }
-      }
-    }
-  
-    function outEFcs(tags) { 
-      for(let i=0; i< tags.length;i++){
-        if (curTgt === tags[i]) {
-          console.log("clicked "+ tags[i].id); 
-          curTgt = null
-        }
-      }
-    }
-  
+    let aClkEls = bApdEls.map(function(v){
+      return CUSSTA.getCEl(v,0) 
+    }).reduce(function(a,b){
+      return a.concat(b)
+    },bApdEls).concat(wEls)
+
     window.onload = function(){
       document.onclick = function (e) {
         curTgt = e.target;
       }
-      //添加在 myWrapper 下边的 iframe
-      if(MYAPP.getCEl(MYAPP.el).filter(MYAPP.cFlt).length - MYAPP.iC.length > 0){
-        let ifs = MYAPP.el.getElementsByTagName('iframe')
-        if(ifs.length){
-          ti_0 = window.setInterval(function(){
-            ifsFcs(ifs)
-          }, 200);
-        }
-      }
 
-      //如果添加到body下边
-      if(apdEles.length){
-        tr_1 =  window.setInterval(function(){
-          outEFcs(apdEles)
-        }, 200);
+      if(aClkEls.length){
+        setInterval(function(){
+          for (let i=0;i<aClkEls.length;i++) {
+            let lpEle = aClkEls[i]
+            if(lpEle.tagName ==='IFRAME'){
+              if(document.activeElement === lpEle){
+                console.log("clicked iframe");
+                window.focus() 
+              } 
+            }else{
+              if (curTgt === lpEle) {
+                console.log("clicked ele"); 
+                curTgt = null
+              }
+            }
+          }
+        },200)
       }
     }
   </script>
-  <h1>4444</h1>
+  <div>
+    weeewe
+    <h1>4444</h1>
+  </div>
   <h1>5555</h1>
   <span>
     <script src="https://bs.serving-sys.com/BurstingPipe/adServer.bs?cn=rsb&c=28&pli=29294475&PluID=0&w=600&h=314&ord=[timestamp]"></script>
@@ -111,7 +123,5 @@
       < a href=" " target="_blank">< img src="https://bs.serving-sys.com/BurstingPipe/adServer.bs?cn=bsr&FlightID=29294475&Page=&PluID=0&Pos=1465774260" border=0 width=600 height=314></ a>
     </noscript>
   </span>
-  <img style="width:100px;height:100px;display: inline-block;" src="https://file.ituring.com.cn/SmallCover/1911299bfad96c1e2ccf" id="a22" alt="">
-  
 </body>
 </html>
