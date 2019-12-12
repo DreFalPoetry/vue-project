@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <h1>1111</h1>
+  <h1>2222</h1>
+  <h1>3333</h1>
+  <!-- 自定义html -->
+  <span id="myWrapper">
+    <script>
+      var MYAPP = MYAPP || {};
+      MYAPP.el =  document.getElementById('myWrapper')
+      MYAPP.getCEl = function(obj){
+        var objChild = [] ;
+        var objs = obj.getElementsByTagName('*');
+        for(let i=0,j=objs.length; i<j;++i){
+          if(objs[i].nodeType != 1){
+            continue ;
+          }
+          var temp = objs[i].parentNode;
+          if(temp.nodeType == 1){
+            if(temp == obj){
+              objChild[objChild.length] = objs[i] ;
+            }
+          }else if(temp.parentNode == obj){
+            objChild[objChild.length] = objs[i] ;
+          }
+        }
+        return objChild;
+      }
+      MYAPP.cFlt = function(v){
+        return v.tagName!=='SCRIPT' && v.tagName!=='NOSCRIPT'
+      }
+      MYAPP.iC = MYAPP.getCEl(MYAPP.el).filter(MYAPP.cFlt), //tag1
+      MYAPP.bC = MYAPP.getCEl(document.body)
+      let a1 =  document.createElement('img')
+      a1.src = 'https://bs.serving-sys.com/BurstingPipe/adServer.bs?cn=bsr&FlightID=29294475&Page=&PluID=0&Pos=1465774260' 
+      a1.id = "a1"
+      let a2 = document.createElement('h1')
+      a2.innerHTML = 'yyyyyy'
+      document.body.append(a1)
+      setTimeout(() => {
+        document.body.append(a2)
+      }, 8000);
+    </script>
+    <script src="https://bs.serving-sys.com/BurstingPipe/adServer.bs?cn=rsb&c=28&pli=29294475&PluID=0&w=600&h=314&ord=[timestamp]"></script>
+    <noscript>
+      < a href=" " target="_blank">< img src="https://bs.serving-sys.com/BurstingPipe/adServer.bs?cn=bsr&FlightID=29294475&Page=&PluID=0&Pos=1465774260" border=0 width=600 height=314></ a>
+    </noscript>
+  </span>
+  <!-- 自定义js -->
+  <script>
+    let ti_0
+    let tr_1
+    let curTgt 
+
+    let apdEles = MYAPP.getCEl(document.body).filter(function (v) {
+      return MYAPP.bC.indexOf(v) < 0 && v.tagName!=='SCRIPT' && v.tagName!=='NOSCRIPT';
+    })
+
+    function ifsFcs(mIfs) { 
+      for (let i=0;i<mIfs.length;i++) {
+        if (document.activeElement === mIfs[i] ) {
+          console.log("clicked "+ mIfs[i].id); 
+          window.focus(); 
+        }
+      }
+    }
+  
+    function outEFcs(tags) { 
+      for(let i=0; i< tags.length;i++){
+        if (curTgt === tags[i]) {
+          console.log("clicked "+ tags[i].id); 
+          curTgt = null
+        }
+      }
+    }
+  
+    window.onload = function(){
+      document.onclick = function (e) {
+        curTgt = e.target;
+      }
+      //添加在 myWrapper 下边的 iframe
+      if(MYAPP.getCEl(MYAPP.el).filter(MYAPP.cFlt).length - MYAPP.iC.length > 0){
+        let ifs = MYAPP.el.getElementsByTagName('iframe')
+        if(ifs.length){
+          ti_0 = window.setInterval(function(){
+            ifsFcs(ifs)
+          }, 200);
+        }
+      }
+
+      //如果添加到body下边
+      if(apdEles.length){
+        tr_1 =  window.setInterval(function(){
+          outEFcs(apdEles)
+        }, 200);
+      }
+    }
+  </script>
+  <h1>4444</h1>
+  <h1>5555</h1>
+  <span>
+    <script src="https://bs.serving-sys.com/BurstingPipe/adServer.bs?cn=rsb&c=28&pli=29294475&PluID=0&w=600&h=314&ord=[timestamp]"></script>
+    <noscript>
+      < a href=" " target="_blank">< img src="https://bs.serving-sys.com/BurstingPipe/adServer.bs?cn=bsr&FlightID=29294475&Page=&PluID=0&Pos=1465774260" border=0 width=600 height=314></ a>
+    </noscript>
+  </span>
+  <img style="width:100px;height:100px;display: inline-block;" src="https://file.ituring.com.cn/SmallCover/1911299bfad96c1e2ccf" id="a22" alt="">
+  
+</body>
+</html>
